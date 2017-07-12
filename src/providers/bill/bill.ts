@@ -44,5 +44,12 @@ return this.billList.remove(billId);
 payBill(billId: string): firebase.Promise<any> {
 return this.billList.update(billId, {paid: true});
 }
-
+takeBillPhoto(billId: string, imageURL: string): any {
+const storageRef = firebase.storage().ref(this.userId);
+return storageRef.child(billId).child('billPicture')
+.putString(imageURL, 'base64', {contentType: 'image/png'})
+.then( pictureSnapshot => {
+this.billList.update(billId, { picture: pictureSnapshot.downloadURL });
+});
+}
 }

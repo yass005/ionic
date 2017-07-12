@@ -16,7 +16,11 @@
 </ion-navbar>
 </ion-header>
 <ion-content padding>
-<img src="http://via.placeholder.com/350x150" >
+<img [src]="bill?.picture || placeholderPicture"
+(click)="uploadPicture(bill?.$key)" />
+<span *ngIf="!bill?.picture">
+Click the image to upload a picture of your debt/bill
+</span>
 <ion-card>
 <ion-card-header>
 Debt Information
