@@ -50,7 +50,21 @@ this.navCtrl.push('BillDetailPage', {
 });
 }
 },
-
+{
+text: 'Mark as Paid!',
+icon: !this.platform.is('ios') ? 'checkmark' : null,
+handler: () => {
+this.billProvider.payBill(billId);
+}
+},
+{
+text: 'Cancel',
+role: 'cancel',
+icon: !this.platform.is('ios') ? 'close' : null,
+handler: () => {
+console.log('Cancel clicked');
+}
+}
 
 ]
 });
